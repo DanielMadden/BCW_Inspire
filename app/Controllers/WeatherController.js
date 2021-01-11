@@ -4,7 +4,9 @@ import weatherService from "../Services/WeatherService.js";
 let _fahrenheit = true
 
 function _drawWeather() {
-  document.getElementById("weather").innerHTML = ProxyState.weather.Template
+  if (typeof ProxyState.weather == "object") {
+    document.getElementById("weather").innerHTML = ProxyState.weather.Template
+  }
 }
 export default class WeatherController {
   constructor() {
@@ -13,8 +15,10 @@ export default class WeatherController {
   }
 
   swapDisplay() {
-    _fahrenheit ? _fahrenheit = false : _fahrenheit = true;
-    document.getElementById("weather-type").innerText = _fahrenheit ? ProxyState.weather.fahrenheit : ProxyState.weather.celsius
+    if (typeof ProxyState.weather == "object") {
+      _fahrenheit ? _fahrenheit = false : _fahrenheit = true;
+      document.getElementById("weather-type").innerText = _fahrenheit ? ProxyState.weather.fahrenheit : ProxyState.weather.celsius
+    }
   }
 
   getWeather() {

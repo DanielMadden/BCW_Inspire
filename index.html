@@ -16,34 +16,42 @@
     <link rel="stylesheet" href="assets/style/main.css">
 </head>
 
-<body id="body">
-    <div id="background-darken"></div>
-    <main>
-        <div id="pos-tasks" class="m-3 d-flex flex-column">
-            <h2>Todo List</h2>
-            <span id="tasks-ratio"></span>
-            <form onsubmit="app.todoController.addTodo(event)">
-                <input name="description" type="text">
-                <button type="submit">Add Todo</button>
-            </form>
-            <div id="tasks" class="d-flex flex-column"></div>
-        </div>
-
-        <div id="pos-weather" class="m-3">
-            <div id="weather" class="d-flex flex-column align-items-center"
-                onclick="app.weatherController.swapDisplay()"></div>
-        </div>
-        <div id="pos-quote" class="mb-3 d-flex justify-content-center">
-            <div id="quote" class="d-flex flex-column align-items-center"></div>
-        </div>
-        <div id="pos-time" class="d-flex justify-content-center align-items-center">
-            <div class="d-flex align-items-end" onclick="app.timeController.swapType()" id="time-box">
-                <h1 id="time" class="m-0"></h1><span id="am-pm" class="mb-3"></span>
+<body>
+    <div id="background" class="hide"></div>
+    <div id="background-darken" class="dark"></div>
+    <h1 id="loading" class="d-flex justify-content-center align-items-center hide">
+        <i class="fas fa-cog fa-spin"></i>
+    </h1>
+    <div class="hide" id="body">
+        <main>
+            <div id="pos-tasks" class="m-3 d-flex flex-column">
+                <h2>Todo List</h2>
+                <span id="tasks-ratio"></span>
+                <form onsubmit="app.todoController.addTodo(event)">
+                    <input name="description" type="text">
+                    <button type="submit">Add</button>
+                </form>
+                <div id="tasks" class="d-flex flex-column"></div>
             </div>
-        </div>
-        <button id="button-cycle" onclick="app.imageController.cycle();app.quoteController.cycle()"
-            class="m-3">Cycle</button>
-    </main>
+
+            <div id="pos-weather" class="m-3">
+                <div id="weather" class="d-flex flex-column align-items-center"
+                    onclick="app.weatherController.swapDisplay()">
+                </div>
+            </div>
+            <div id="pos-quote" class="mb-3 d-flex justify-content-center">
+                <div id="quote" class="d-flex flex-column align-items-center"></div>
+            </div>
+            <div id="pos-time" class="d-flex justify-content-center align-items-center">
+                <div class="d-flex align-items-end" onclick="app.timeController.swapType()" id="time-box">
+                    <h1 id="time" class="m-0"></h1><span id="am-pm" class="mb-3"></span>
+                </div>
+            </div>
+            <button id="button-cycle" onclick="app.imageController.cycle();app.quoteController.cycle()"
+                class="m-3">Cycle</button>
+        </main>
+    </div>
+
     <!-- <footer class="container-fluid bg-transparent text-light">
         <div class="row text-center">
             <div class="col">
@@ -57,6 +65,9 @@
 
     <!-- Module Scripts -->
     <script src="app/main.js" type="module"></script>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/e4c344fccb.js" crossorigin="anonymous"></script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

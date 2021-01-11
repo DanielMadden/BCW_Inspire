@@ -3,7 +3,6 @@ import QuoteController from "./Controllers/QuoteController.js";
 import TimeController from "./Controllers/TimeController.js";
 import TodoController from "./Controllers/TodoController.js";
 import WeatherController from "./Controllers/WeatherController.js";
-
 class App {
   constructor() {
     this.weatherController = new WeatherController();
@@ -68,6 +67,11 @@ window["app"] = new App();
  * DONE Todo's aren't redrawn or re-retrived. Easy because I did this in TaskMaster
  *
  * ----- PERSONAL STRETCH GOALS
- * NOTE Weather temperature type is saved in localStorage
+ * DONE The last successful data is saved to localStorage
+ * DONE If API fails, load localStorage
+ * DONE If localStorage fails, load preset values
+ * DONE Check if all data is prepared and load the page.
+ * DONE Before data is prepared, have a loading screen
+ * DONE Transition the image in in order for it to have time to load
  *
  */

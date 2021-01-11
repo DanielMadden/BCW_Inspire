@@ -2,6 +2,7 @@ import { ProxyState } from "../AppState.js";
 import Todo from "../Models/Todo.js";
 import { api } from "../Services/AxiosService.js";
 import { generateId } from "../Utils/GenerateId.js";
+import { displayService } from "./DisplayService.js";
 
 // TODO you will need to change 'YOURNAME' to your actual name or all requests will be rejected
 let url = 'Daniel/todos/'
@@ -9,8 +10,16 @@ let url = 'Daniel/todos/'
 
 class TodoService {
   async getTodos() {
-    let res = await api.get(url);
-    ProxyState.todos = res.data.map(todo => new Todo(todo, generateId()));
+    console.log("getting todos...")
+    try {
+      let res = await api.get(url);
+      ProxyState.todos = res.data.map(todo => new Todo(todo, generateId()));
+      displayService.status.todos = true;
+    } catch (error) {
+      console.error("Todo API wasn't reached. Todo interaction has been removed from the DOM.")
+      this.noTodos()
+      displayService.status.todos = true;
+    }
   }
 
   async addTodo(todo) {
@@ -38,6 +47,10 @@ class TodoService {
 
   updateComplete() {
     window.app.todoController.updateComplete()
+  }
+
+  noTodos() {
+    window.app.todoController.noTodos()
   }
 }
 

@@ -9,8 +9,13 @@ function _drawTodos() {
 }
 
 function _updateComplete() {
-  document.getElementById("tasks-ratio").innerText = `${ProxyState.todos.filter(todo => !todo.completed).length} more tasks`
+  let remaining = ProxyState.todos.filter(todo => !todo.completed).length
+  document.getElementById("tasks-ratio").innerText = `${remaining == 0 ? "You're caught up!" : `${remaining} more task${remaining == 1 ? "" : "s"}`}`
   // `${ProxyState.todos.filter(todo => todo.completed).length}/${ProxyState.todos.length}`
+}
+
+function _noTodos() {
+  document.getElementById("pos-tasks").remove()
 }
 
 export default class TodoController {
@@ -42,6 +47,10 @@ export default class TodoController {
 
   updateComplete() {
     _updateComplete()
+  }
+
+  noTodos() {
+    _noTodos()
   }
 
   toggleTodoStatus(localId) {
